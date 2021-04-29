@@ -14,25 +14,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: fabricioveronez/api-bootcamp-produto:v2
-          # livenessProbe:
-          #   httpGet:
-          #     path: /health
-          #     port: 8080
-          #   initialDelaySeconds: 2
-          #   periodSeconds: 2
-          #   timeoutSeconds: 1
-          #   successThreshold: 1
-          #   failureThreshold: 1 
-          # readinessProbe:
-          #   httpGet:
-          #     path: /read
-          #     port: 8080
-          #   initialDelaySeconds: 2
-          #   periodSeconds: 2
-          #   timeoutSeconds: 1
-          #   successThreshold: 1
-          #   failureThreshold: 1  
+          image: fabricioveronez/api-bootcamp-produto
           resources:
             requests:
               memory: "32Mi"
@@ -59,19 +41,4 @@ spec:
     - port: 80
       targetPort: 8080   
       nodePort: 30000   
-  type: LoadBalancer
-
----
-
-# apiVersion: autoscaling/v1
-# kind: HorizontalPodAutoscaler
-# metadata:
-#   name: api-hpa
-# spec:
-#   scaleTargetRef:
-#     apiVersion: apps/v1
-#     kind: Deployment
-#     name: api
-#   minReplicas: 1
-#   maxReplicas: 10
-#   targetCPUUtilizationPercentage: 50
+  type: NodePort
